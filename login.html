@@ -35,19 +35,19 @@
       *********************************************************************************************************************************************************** -->
   <div id="login-page">
     <div class="container">
-      <form class="form-login" action="index.html">
+      <form class="form-login">
         <h2 class="form-login-heading">sign in now</h2>
         <div class="login-wrap">
-          <input type="text" class="form-control" placeholder="User ID" autofocus>
+          <input type="text" id="txt_email"  class="form-control" placeholder="your email" autofocus>
           <br>
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" id="txt_psw"   class="form-control" placeholder="Password">
           <label class="checkbox">
             <input type="checkbox" value="remember-me"> Remember me
             <span class="pull-right">
             <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>
             </span>
             </label>
-          <button class="btn btn-theme btn-block" href="index.html" type="submit"><i class="fa fa-lock"></i> SIGN IN</button>
+          <button class="btn btn-theme btn-block" id="btn_login" ><i class="fa fa-lock"></i> SIGN IN</button>
           <hr>
           <div class="login-social-link centered">
             <p>or you can sign in via your social network</p>
@@ -94,6 +94,43 @@
     $.backstretch("img/login-bg.jpg", {
       speed: 500
     });
+    
+    $('#btn_login').click(function() {
+    	 
+        var email = $('#txt_email').val();
+
+        var psw = $('#txt_psw').val();
+
+        $.ajax({
+
+            type : "GET",
+
+            url : "localhost:8090/v1/user/login.do",
+
+            success : function(data, textStatus, xhr) {
+
+               if (data == 'login success') {
+
+                    alert('로그인에 실패하였습니다.')
+
+                } else {
+
+                	 alert('로그인에 성공하였습니다.')
+
+
+                }
+
+            },
+
+            error : function(request, status, error) {
+
+                alert("code:" + request.status + "\n" + "error:" + error);
+
+            }
+
+        })
+
+});
   </script>
 </body>
 
