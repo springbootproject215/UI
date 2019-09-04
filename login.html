@@ -96,19 +96,22 @@
     });
     
     $('#btn_login').click(function() {
-    	 
-        var email = $('#txt_email').val();
+    	debugger;
 
-        var psw = $('#txt_psw').val();
+    	 
+        //var email = $('#txt_email').val();
+
+        //var psw = $('#txt_psw').val();
 
         $.ajax({
 
-            type : "GET",
-
+            type : "POST",
+            contentType:"application/xml",
             url : "http://dbsl.ga:8090/v1/user/login.do",
 
             success : function(data, textStatus, xhr) {
 
+            	debugger;
                if (data == 'login success') {
 
                     alert('로그인에 실패하였습니다.')
@@ -123,7 +126,7 @@
             },
 
             error : function(request, status, error) {
-
+            	debugger;
                 alert("code:" + request.status + "\n" + "error:" + error);
 
             }
