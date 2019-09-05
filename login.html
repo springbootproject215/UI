@@ -97,18 +97,10 @@
     
     $('#btn_login').click(function() {
  
-        var email = $('#txt_email').val();
-        var psw = $('#txt_psw').val();
-
         $.ajax({
-
-            type : "POST",
-            contentType:"application/json",
-            dataType:"json",
-            data:{"email":email , "psw":psw },
+            type : "GET",
             url : "localhost:8060/v1/user/login.do",
-            //"http://dbsl.ga:8090/v1/user/login.do"
-            success : function(data, textStatus, xhr) {
+            success : function(data) {
                 
                if (data == 'success') {
                     alert('로그인에 성곻하였습니다.')
