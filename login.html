@@ -71,7 +71,7 @@
               </div>
               <div class="modal-body">
                 <p>Enter your e-mail address below to reset your password.</p>
-                <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+                <input type="text"  placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
               </div>
               <div class="modal-footer">
                 <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
@@ -99,17 +99,16 @@
     $('#btn_login').click(function() {
  
         var email = $('#txt_email').val();
-        var psw = $('#txt_psw').val();
-
+        var pwd = $('#txt_psw').val();
+        
         $.ajax({
             type : "POST",
             crossOrigin: true,
             contentType:"application/json",
             dataType:"json",
-            data:{"email":email , "psw":psw },
+            data:{"email":email , "pwd":pwd },
             url : "http://dbsl.ga:8090/v1/user/login.do",
-            success : function(data, textStatus, xhr) {
-                
+            success : function(data) {
                if (data == 'success') {
                     alert('로그인에 성곻하였습니다.')
                     location.href = 'index.html'
@@ -118,13 +117,10 @@
                 }
             },
             error : function(request, status, error) {
-            	debugger;
                 alert("code:" + request.status + "\n" + "error:" + error);
 
             }
-
         })
-
 });
   </script>
 </body>
