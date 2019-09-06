@@ -109,6 +109,7 @@
             data:{"email":email , "pwd":pwd },
             url : "http://dbsl.ga:8060/v1/user/login.do",
             success : function(data) {
+            	debugger;
                if (data == 'success') {
                     alert('로그인에 성곻하였습니다.')
                     location.href = 'index.html'
@@ -118,7 +119,7 @@
             },
             error : function(request, status, error) {
                 alert("code:" + request.status + "\n" + "error:" + error);
-
+				debugger;
             }
         })
 });
