@@ -33,14 +33,14 @@
   <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
-  <div id="login-page">
+ <div id="login-page">
     <div class="container">
       <form class="form-login">
         <h2 class="form-login-heading">sign in now</h2>
         <div class="login-wrap">
-          <input type="text" id="txt_email"  class="form-control" placeholder="your email" autofocus>
+          <input type="text" id="email"  class="form-control" placeholder="your email" autofocus>
           <br>
-          <input type="password" id="txt_psw"   class="form-control" placeholder="Password">
+          <input type="password" id="pwd"   class="form-control" placeholder="Password">
           <label class="checkbox">
             <br>
             <span class="pull-right">
@@ -98,8 +98,8 @@
     
     $('#btn_login').click(function() {
  
-        var email = $('#txt_email').val();
-        var pwd = $('#txt_psw').val();
+        var email = $('#email').val();
+        var pwd = $('#pwd').val();
         
         $.ajax({
             type : "POST",
