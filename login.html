@@ -33,16 +33,16 @@
   <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
- <div id="login-page">
+  <div id="login-page">
     <div class="container">
-      <form class="form-login">
+      <form id="loginForm" class="form-login">
         <h2 class="form-login-heading">sign in now</h2>
         <div class="login-wrap">
-          <input type="text" id="email"  class="form-control" placeholder="your email" autofocus>
+          <input type="text" name="email"  class="form-control" placeholder="your email" autofocus>
           <br>
-          <input type="password" id="pwd"   class="form-control" placeholder="Password">
+          <input type="password" name="pwd"   class="form-control" placeholder="Password">
           <label class="checkbox">
-            <br>
+            <input type="checkbox" value="remember-me"> Remember me
             <span class="pull-right">
             <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>
             </span>
@@ -57,7 +57,7 @@
           <div class="registration">
             Don't have an account yet?<br/>
             <a class="" href="regist.html">
-              Create an account
+               Create an account
               </a>
           </div>
         </div>
@@ -96,28 +96,25 @@
       speed: 500
     });
     
-    $('#btn_login').click(function() {
- 
-        var email = $('#email').val();
-        var pwd = $('#pwd').val();
-        
+    $('#btn_login').click(function() { 
+    	event.preventDefault();
+
         $.ajax({
             type : "POST",
             crossOrigin: true,
-            contentType:"application/json",
-            dataType:"json",
-            data:{"email":email , "pwd":pwd },
-            url : "local:8060/v1/user/login.do",
+            data: $("#loginForm").serialize(),
+            url : "api/v1/user/loginEnter.do", 
             success : function(data) {
             	debugger;
-               if (data == 'success') {
+               if (data.result == 'success') {
                     alert('로그인에 성곻하였습니다.')
-                    location.href = 'index.html'
+                    location.href = 'index.do'
                 } else {
-                	alert('로그인에 실패하였습니다.')
+                	alert(data.message)
                 }
             },
             error : function(request, status, error) {
+            debugger;
                 alert("code:" + request.status + "\n" + "error:" + error);
 				debugger;
             }
