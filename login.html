@@ -103,7 +103,7 @@
             type : "POST",
             crossOrigin: true,
             data: $("#loginForm").serialize(),
-            url : "api/v1/user/loginEnter.do", 
+            url : "localhost:8070/api/v1/user/loginEnter.do", 
             success : function(data) {
             	debugger;
                if (data.result == 'success') {
